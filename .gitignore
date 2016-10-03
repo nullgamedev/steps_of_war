@@ -1,0 +1,6 @@
+SoW/Library/
+SoW/obj/
+SoW/ProjectSettings
+SoW/Temp
+*.sln
+*.csproj
