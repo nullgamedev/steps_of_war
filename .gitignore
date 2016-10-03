@@ -4,5 +4,5 @@ SoW/ProjectSettings
 SoW/Temp
 *.sln
 *.csproj
-*.meta
-!SoW/Assets/Sprites/*.meta
+#*.meta
+#!SoW/Assets/Sprites/*.meta
