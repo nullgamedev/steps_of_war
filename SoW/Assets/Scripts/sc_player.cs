@@ -5,17 +5,29 @@ using System.Collections.Generic;
 public class sc_player : MonoBehaviour {
 
     public static sc_player _;
+
     public GameObject obj_marker;
     public float duration_war_action = 0.8f;
     public Sprite sprite_cell_go;
     public Sprite sprite_cell_aim;
     public Sprite sprite_cell_fire;
     public GameObject popup_object;
-    
+
+    public int hitpoints
+    {
+        get { return hp; }
+        set {
+            hp = Mathf.Max(value, 0);
+            if (hp == 0)
+                die();
+        }
+    }
     public sc_field_cell current_cell;
     public float dodge_chance = 0f;
     public float aim_effect = 0.5f;
 
+    public int base_hp;
+    int hp = 4;
     GameObject aim_weapoon;
     GameObject aim_target;
     int aim_count;
@@ -46,6 +58,7 @@ public class sc_player : MonoBehaviour {
 
     void Start()
     {
+        hp = base_hp;
         marker_list = new List<GameObject>();
         action_list = new List<action>();
         sc_event_controller.player_tactic_move += tactic_move;
@@ -117,11 +130,18 @@ public class sc_player : MonoBehaviour {
                         sc_weapoon w = cur_action.weapoon.GetComponent<sc_weapoon>();
                         if (!was_shot && time > time_start_action + w.time_shooting * duration_war_action)
                         {
-                            float chance_hit = w.chance_hit * (1f + aim_count * aim_effect);
+                            float chance_hit = w.chance_hit * (1f + aim_count * aim_effect) - cur_action.target.GetComponent<sc_enemy>().dodge_chance;
                             w.shot(transform.position, cur_action.target.transform.position);
                             sc_popup_text a = Instantiate<GameObject>(popup_object).GetComponent<sc_popup_text>();
-                            a.text = chance_hit.ToString();
                             a.world_position = cur_action.target.transform.position;
+                            if (Random.Range(0f, 1f) < chance_hit)
+                            {
+                                a.text = "-" + w.damage.ToString();
+                                cur_action.target.GetComponent<sc_enemy>().hitpoints -= w.damage;
+                            }
+                            else
+                                a.text = "miss";
+                            //a.text = chance_hit.ToString() + " | " + a.text;
                             was_shot = true;
                         }
                     } break;
@@ -230,9 +250,14 @@ public class sc_player : MonoBehaviour {
         time_start_action = time;
     }
 
-    void OnGUI()
+    void die()
+    {
+        Destroy(gameObject);
+    }
+
+    /*void OnGUI()
     {
         Rect rect = new Rect(10f, 10f, 50f, 50f);
         GUI.Label(rect, dodge_chance.ToString());
-    }
+    }*/
 }
