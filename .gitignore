@@ -4,6 +4,7 @@ SoW/obj/
 SoW/Temp
 *.sln
 *.csproj
+Sow/_Build/
 
 #*.meta
 #!SoW/Assets/Sprites/*.meta

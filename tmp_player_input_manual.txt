@@ -1,0 +1,5 @@
+WASD	- moving in tactic phase (DO NOT EXIT BOARD)
+Space	- end tactic phase
+P	- on/off pause
+F	- fire
+T	- aim
