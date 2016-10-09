@@ -49,6 +49,7 @@ public class sc_player : MonoBehaviour {
     }
     List<GameObject> marker_list;
     List<action> action_list;
+    Animator animator;
 
 
     void Awake()
@@ -58,6 +59,7 @@ public class sc_player : MonoBehaviour {
 
     void Start()
     {
+        animator = gameObject.GetComponent<Animator>();
         hp = base_hp;
         marker_list = new List<GameObject>();
         action_list = new List<action>();
@@ -72,6 +74,31 @@ public class sc_player : MonoBehaviour {
     void calc_stats_for_war_action()
     {
         cur_action = action_list[0];
+        //set animation
+        switch(cur_action.type)
+        {
+            case action_type.go:
+            {
+                animator.SetTrigger("walk");
+            } break;
+            case action_type._somersault:
+            {
+                if (cur_action.target.transform.position.x - transform.position.x > 0.2f)
+                    animator.SetTrigger("somersault_right");
+                if (transform.position.x - cur_action.target.transform.position.x > 0.2f)
+                    animator.SetTrigger("somersault_left");
+                if (transform.position.y - cur_action.target.transform.position.y > 0.2f)
+                    animator.SetTrigger("somersault_down");
+                if (cur_action.target.transform.position.y - transform.position.y > 0.2f)
+                    animator.SetTrigger("somersault_up");
+            } break;
+            case action_type.aim:
+            case action_type.fire:
+            {
+                animator.SetTrigger("aim");
+            } break;
+        }
+        //other calcs
         was_shot = false;
         bool aim_ok = false;
         if (cur_action.type == action_type.aim)
@@ -130,6 +157,7 @@ public class sc_player : MonoBehaviour {
                         sc_weapoon w = cur_action.weapoon.GetComponent<sc_weapoon>();
                         if (!was_shot && time > time_start_action + w.time_shooting * duration_war_action)
                         {
+                            animator.SetTrigger("fire");
                             float chance_hit = w.chance_hit * (1f + aim_count * aim_effect) - cur_action.target.GetComponent<sc_enemy>().dodge_chance;
                             w.shot(transform.position, cur_action.target.transform.position);
                             sc_popup_text a = Instantiate<GameObject>(popup_object).GetComponent<sc_popup_text>();
@@ -151,6 +179,7 @@ public class sc_player : MonoBehaviour {
 
     void start_tactic_phase()
     {
+        animator.SetTrigger("stay");
         current_war_position = transform.position;
         transform.position = current_cell.transform.position;
         phase = phase_type.tactic;
