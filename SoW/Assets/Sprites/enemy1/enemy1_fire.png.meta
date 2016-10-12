@@ -1,15 +1,12 @@
 fileFormatVersion: 2
-guid: 2e0b264f04a16e74a8fb9642be06c913
-timeCreated: 1476016167
+guid: 0a2418e5ad555db438bb8202a6b3b0ab
+timeCreated: 1476286590
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: player_somersault_left_0
-    21300002: player_somersault_left_1
-    21300004: player_somersault_left_2
-    21300006: player_somersault_left_3
-    21300008: player_somersault_left_4
-    21300010: player_somersault_left_5
+    21300000: enemy1_fire_0
+    21300002: enemy1_fire_1
+    21300004: enemy1_fire_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -59,7 +56,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_somersault_left_0
+      name: enemy1_fire_0
       rect:
         serializedVersion: 2
         x: 0
@@ -72,7 +69,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: player_somersault_left_1
+      name: enemy1_fire_1
       rect:
         serializedVersion: 2
         x: 32
@@ -85,49 +82,10 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: player_somersault_left_2
+      name: enemy1_fire_2
       rect:
         serializedVersion: 2
         x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: player_somersault_left_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: player_somersault_left_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: player_somersault_left_5
-      rect:
-        serializedVersion: 2
-        x: 160
         y: 0
         width: 32
         height: 32

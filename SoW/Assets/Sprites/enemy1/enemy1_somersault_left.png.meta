@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 2e0b264f04a16e74a8fb9642be06c913
-timeCreated: 1476016167
+guid: 4aaa9124c1a911b458c290c26427c09a
+timeCreated: 1476286642
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: player_somersault_left_0
-    21300002: player_somersault_left_1
-    21300004: player_somersault_left_2
-    21300006: player_somersault_left_3
-    21300008: player_somersault_left_4
-    21300010: player_somersault_left_5
+    21300000: enemy1_somersault_left_0
+    21300002: enemy1_somersault_left_1
+    21300004: enemy1_somersault_left_2
+    21300006: enemy1_somersault_left_3
+    21300008: enemy1_somersault_left_4
+    21300010: enemy1_somersault_left_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -59,7 +59,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_somersault_left_0
+      name: enemy1_somersault_left_0
       rect:
         serializedVersion: 2
         x: 0
@@ -72,7 +72,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: player_somersault_left_1
+      name: enemy1_somersault_left_1
       rect:
         serializedVersion: 2
         x: 32
@@ -85,7 +85,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: player_somersault_left_2
+      name: enemy1_somersault_left_2
       rect:
         serializedVersion: 2
         x: 64
@@ -98,7 +98,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: player_somersault_left_3
+      name: enemy1_somersault_left_3
       rect:
         serializedVersion: 2
         x: 96
@@ -111,7 +111,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: player_somersault_left_4
+      name: enemy1_somersault_left_4
       rect:
         serializedVersion: 2
         x: 128
@@ -124,7 +124,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: player_somersault_left_5
+      name: enemy1_somersault_left_5
       rect:
         serializedVersion: 2
         x: 160

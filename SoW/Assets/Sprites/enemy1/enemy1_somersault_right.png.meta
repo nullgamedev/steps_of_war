@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: edfc098ec4b645445a196f8c70c51dcf
-timeCreated: 1476019454
+guid: f2576b99d2a85db498d8648cf4bd22ea
+timeCreated: 1476286695
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: player_somersault_down_0
-    21300002: player_somersault_down_1
-    21300004: player_somersault_down_2
-    21300006: player_somersault_down_3
-    21300008: player_somersault_down_4
-    21300010: player_somersault_down_5
+    21300000: enemy1_somersault_right_0
+    21300002: enemy1_somersault_right_1
+    21300004: enemy1_somersault_right_2
+    21300006: enemy1_somersault_right_3
+    21300008: enemy1_somersault_right_4
+    21300010: enemy1_somersault_right_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -35,7 +35,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -59,7 +59,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_somersault_down_0
+      name: enemy1_somersault_right_0
       rect:
         serializedVersion: 2
         x: 0
@@ -72,7 +72,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: player_somersault_down_1
+      name: enemy1_somersault_right_1
       rect:
         serializedVersion: 2
         x: 32
@@ -85,7 +85,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: player_somersault_down_2
+      name: enemy1_somersault_right_2
       rect:
         serializedVersion: 2
         x: 64
@@ -98,7 +98,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: player_somersault_down_3
+      name: enemy1_somersault_right_3
       rect:
         serializedVersion: 2
         x: 96
@@ -111,7 +111,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: player_somersault_down_4
+      name: enemy1_somersault_right_4
       rect:
         serializedVersion: 2
         x: 128
@@ -124,7 +124,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: player_somersault_down_5
+      name: enemy1_somersault_right_5
       rect:
         serializedVersion: 2
         x: 160
