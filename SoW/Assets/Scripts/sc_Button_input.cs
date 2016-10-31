@@ -18,6 +18,7 @@ public class sc_Button_input : MonoBehaviour
     public GameObject Shot_Button;
     public GameObject Canvas1;
     public GameObject Canvas2;
+    SpriteRenderer render;
 
     public Text Move_Text;
     private sc_field_cell Current_cell_check;
@@ -26,10 +27,13 @@ public class sc_Button_input : MonoBehaviour
 
     bool Check_Button;
 
+
     public void Action_aim()
     {
         Move_Buttons.SetActive(false);
-        sc_event_controller.player_tactic_aim_event(enemy, weapoon);
+        render = enemy.GetComponent<SpriteRenderer>();
+        render.color = new Color(1f, 0.46f, 0.46f, 1f);
+       // sc_event_controller.player_tactic_aim_event(enemy, weapoon);
         Count_of_Moves++;
         Check_everything();
     }
