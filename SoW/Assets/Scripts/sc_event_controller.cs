@@ -14,6 +14,7 @@ public class sc_event_controller : MonoBehaviour {
     public static event intint_event_container player_tactic_move;
     public static event gogo_event_container player_tactic_shot;
     public static event gogo_event_container player_tactic_aim;
+    public static event void_event_container player_tactic_undo;
 
     /*void Awake()
     {
@@ -39,5 +40,9 @@ public class sc_event_controller : MonoBehaviour {
     public static void player_tactic_aim_event(GameObject enemy, GameObject weapoon)
     {
         player_tactic_aim(enemy, weapoon);
+    }
+    public static void player_tactik_undo_event()
+    {
+        player_tactic_undo();
     }
 }

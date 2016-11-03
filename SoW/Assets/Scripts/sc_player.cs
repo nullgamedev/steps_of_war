@@ -68,6 +68,7 @@ public class sc_player : MonoBehaviour {
         sc_event_controller.end_tactik_phase += start_war_phase;
         sc_event_controller.player_tactic_shot += tactic_shot;
         sc_event_controller.player_tactic_aim += tactic_aim;
+        sc_event_controller.player_tactic_undo += tactic_undo;
         start_tactic_phase();
     }
 
@@ -238,6 +239,15 @@ public class sc_player : MonoBehaviour {
         tmp.target = enemy;
         tmp.weapoon = weapoon;
         action_list.Add(tmp);
+    }
+
+    void tactic_undo()
+    {
+        action_list.RemoveAt(action_list.Count - 1);
+        GameObject marker = marker_list[marker_list.Count - 1];
+        transform.position = marker.transform.position;
+        Destroy(marker);
+        marker_list.RemoveAt(marker_list.Count - 1);
     }
 
     void start_war_phase()

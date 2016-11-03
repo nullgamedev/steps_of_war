@@ -84,6 +84,11 @@ public class sc_Button_input : MonoBehaviour
         sc_event_controller.end_tactik_phase_event();
         Move_Buttons.SetActive(false);
     }
+    public void Action_undo()//CHANGE BY ROMAN!!!!!!!! NEED TO CORRECT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    {
+        sc_event_controller.player_tactik_undo_event();
+        Count_of_Moves--;
+    }
     public void End_war_stage()
     {
         Check_everything();
