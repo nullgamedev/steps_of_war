@@ -1,0 +1,18 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\sc_Button_input.cs">
+    <Files>
+      <File FileName="Assets\Scripts\sc_Button_input.cs" Line="46" Column="23" />
+      <File FileName="Assets\Scripts\sc_touch_object.cs" Line="24" Column="63" />
+      <File FileName="Assets\Scripts\sc_player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\sc_event_controller.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\sc_Menu_in_Game.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\sc_Main_menu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\sc_Screen_inf.cs" Line="32" Column="5" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
