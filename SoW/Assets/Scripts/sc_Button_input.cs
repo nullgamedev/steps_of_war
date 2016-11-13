@@ -21,24 +21,37 @@ public class sc_Button_input : MonoBehaviour
     SpriteRenderer render;
 
     public Text Move_Text;
+
     private sc_field_cell Current_cell_check;
-    public int Max_Moves = 20;
-    private int Count_of_Moves = 0;
-
-    bool Check_Button;
-
+	private int Max_Moves = 7;
+	public static int Count_of_Moves = 0;
+	public static bool No_Aim = false;
+	public static int Enemy_to_Aim = 0;
 
     public void Action_aim()
     {
-        Move_Buttons.SetActive(false);
-        render = enemy.GetComponent<SpriteRenderer>();
-        render.color = new Color(1f, 0.46f, 0.46f, 1f);
-       // sc_event_controller.player_tactic_aim_event(enemy, weapoon);
-        Count_of_Moves++;
-        Check_everything();
+		if (Enemy_to_Aim == 1) 
+		{
+			sc_event_controller.player_tactic_aim_event (enemy, weapoon);
+			sc_Button_input.Count_of_Moves++;
+			sc_Button_input.No_Aim = true;
+		} 
+		else 
+		{
+			Move_Buttons.SetActive (false);
+			enemy.GetComponent<Renderer> ().material.color = Color.red;
+			//render = enemy.GetComponent<SpriteRenderer>();
+			//render.color = new Color(1f, 0.46f, 0.46f, 1f);
+			// sc_event_controller.player_tactic_aim_event(enemy, weapoon);
+			//Count_of_Moves++;
+			enemy.GetComponent<Collider2D> ().enabled = true;
+		}
+
     }
+
     public void Action_fire()
-    {
+	{
+		//enemy.GetComponent<Renderer> ().material.color = Color.white;
         Move_Buttons.SetActive(false);
         sc_event_controller.player_tactic_shot_event(enemy, weapoon);
         Count_of_Moves++;
@@ -84,10 +97,15 @@ public class sc_Button_input : MonoBehaviour
         sc_event_controller.end_tactik_phase_event();
         Move_Buttons.SetActive(false);
     }
-    public void Action_undo()//CHANGE BY ROMAN!!!!!!!! NEED TO CORRECT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public void Action_undo()
     {
-        sc_event_controller.player_tactik_undo_event();
-        Count_of_Moves--;
+		if (Count_of_Moves > 0) 
+		{
+			sc_event_controller.player_tactik_undo_event ();
+			Count_of_Moves--;
+			Check_everything ();
+		}
+        
     }
     public void End_war_stage()
     {
@@ -102,10 +120,18 @@ public class sc_Button_input : MonoBehaviour
         sc_event_controller.end_war_phase += End_war_stage;
     }
 
-    public void Check_everything()
-    {
+	public void Check_after_aimorfire()
+	{
+		enemy.GetComponent<Collider2D>().enabled = false;
+		enemy.GetComponent<Renderer>().material.color = Color.white;
+		Check_everything ();
 
-        Move_Text.text = "Moves: " + Count_of_Moves + "/20";
+	}
+	public void Check_everything()
+    {
+		No_Aim = false;
+
+		Move_Text.text = "Moves: " + Count_of_Moves + "/" + Max_Moves;
         if (Count_of_Moves < Max_Moves)
         {
 
@@ -124,7 +150,7 @@ public class sc_Button_input : MonoBehaviour
             Canvas2.SetActive(false);
         }
         Current_cell_check = GameObject.Find("player").GetComponent<sc_player>().current_cell;
-        if (Check_Button = Current_cell_check.CompareTag("No_way_to_Right"))
+        if (Current_cell_check.CompareTag("No_way_to_Right"))
         {
             Right_Button.SetActive(false);
             Up_Button.SetActive(true);
@@ -133,7 +159,7 @@ public class sc_Button_input : MonoBehaviour
 
 
         }
-        if (Check_Button = Current_cell_check.CompareTag("No_way_to_RightUp"))
+        if (Current_cell_check.CompareTag("No_way_to_RightUp"))
         {
             Right_Button.SetActive(false);
             Up_Button.SetActive(false);
@@ -141,21 +167,21 @@ public class sc_Button_input : MonoBehaviour
             Left_Button.SetActive(true);
 
         }
-        if (Check_Button = Current_cell_check.CompareTag("No_way_to_RightDown"))
+        if (Current_cell_check.CompareTag("No_way_to_RightDown"))
         {
             Right_Button.SetActive(false);
             Up_Button.SetActive(true);
             Down_Button.SetActive(false);
             Left_Button.SetActive(true);
         }
-        if (Check_Button = Current_cell_check.CompareTag("No_way_to_Left"))
+        if (Current_cell_check.CompareTag("No_way_to_Left"))
         {
             Right_Button.SetActive(true);
             Up_Button.SetActive(true);
             Down_Button.SetActive(true);
             Left_Button.SetActive(false);
         }
-        if (Check_Button = Current_cell_check.CompareTag("No_way_to_LeftUp"))
+        if (Current_cell_check.CompareTag("No_way_to_LeftUp"))
         {
             Right_Button.SetActive(true);
             Up_Button.SetActive(false);
@@ -163,28 +189,28 @@ public class sc_Button_input : MonoBehaviour
             Left_Button.SetActive(false);
         }
 
-        if (Check_Button = Current_cell_check.CompareTag("No_way_to_LeftDown"))
+        if (Current_cell_check.CompareTag("No_way_to_LeftDown"))
         {
             Right_Button.SetActive(true);
             Up_Button.SetActive(true);
             Down_Button.SetActive(false);
             Left_Button.SetActive(false);
         }
-        if (Check_Button = Current_cell_check.CompareTag("No_way_to_Up"))
+        if (Current_cell_check.CompareTag("No_way_to_Up"))
         {
             Right_Button.SetActive(true);
             Up_Button.SetActive(false);
             Down_Button.SetActive(true);
             Left_Button.SetActive(true);
         }
-        if (Check_Button = Current_cell_check.CompareTag("No_way_to_Down"))
+        if (Current_cell_check.CompareTag("No_way_to_Down"))
         {
             Right_Button.SetActive(true);
             Up_Button.SetActive(true);
             Down_Button.SetActive(false);
             Left_Button.SetActive(true);
         }
-        if (Check_Button = Current_cell_check.CompareTag("Free_Fly"))
+        if (Current_cell_check.CompareTag("Free_Fly"))
         {
             Right_Button.SetActive(true);
             Up_Button.SetActive(true);
@@ -193,4 +219,11 @@ public class sc_Button_input : MonoBehaviour
         }
 
     }
+	void Update()
+	{
+		if (No_Aim) 
+		{
+			Check_after_aimorfire();
+		}
+	}
 }

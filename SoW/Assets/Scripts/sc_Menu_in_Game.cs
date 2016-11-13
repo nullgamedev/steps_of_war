@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class sc_Menu_in_Game : MonoBehaviour {
     public GameObject Continue_Button;
@@ -61,14 +62,11 @@ public class sc_Menu_in_Game : MonoBehaviour {
 
     public void Click_Restart_Button()
     {
-        Canvas1.SetActive(true);
-        Player.SetActive(true);
-        Enemy.SetActive(true);
-        Application.LoadLevel(Application.loadedLevel);
+		SceneManager.LoadScene("roman_battle_area", LoadSceneMode.Single);
     }
     public void Click_Exit_Button()
     {
-        Application.LoadLevel("_Main_menu");
+        SceneManager.LoadScene("_Main_menu", LoadSceneMode.Single);
     }
 
    }

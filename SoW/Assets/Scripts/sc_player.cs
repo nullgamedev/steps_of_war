@@ -13,6 +13,16 @@ public class sc_player : MonoBehaviour {
     public Sprite sprite_cell_fire;
     public GameObject popup_object;
 
+	// created by Yurii .  IM SSSSSSSSSSOOOOOOOOOOOORRRRRRRRRRYYYYYYYYY
+
+	public static float HitChangeForYurii;
+	public static int HpForYurii;
+
+	/// <summary>
+
+	/// </summary>
+	/// <value>The hitpoints.</value>
+
     public int hitpoints
     {
         get { return hp; }
@@ -160,6 +170,7 @@ public class sc_player : MonoBehaviour {
                         {
                             animator.SetTrigger("fire");
                             float chance_hit = w.chance_hit * (1f + aim_count * aim_effect) - cur_action.target.GetComponent<sc_enemy>().dodge_chance;
+							HitChangeForYurii = chance_hit;
                             w.shot(transform.position, cur_action.target.transform.position);
                             sc_popup_text a = Instantiate<GameObject>(popup_object).GetComponent<sc_popup_text>();
                             a.world_position = cur_action.target.transform.position;
@@ -176,6 +187,8 @@ public class sc_player : MonoBehaviour {
                     } break;
             }
         }
+		HpForYurii = hitpoints;
+
     }
 
     void start_tactic_phase()

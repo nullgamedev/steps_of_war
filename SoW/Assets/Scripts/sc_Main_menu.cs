@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class sc_Main_menu : MonoBehaviour {
 
 	public void StartGame() {
-		Application.LoadLevel("roman_battle_area");
+		SceneManager.LoadScene("roman_battle_area", LoadSceneMode.Single);
 	
 	}
 	public void ExitGame() {
