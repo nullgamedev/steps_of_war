@@ -155,24 +155,38 @@ public class sc_enemy : MonoBehaviour {
                         sc_weapoon w = cur_action.weapoon.GetComponent<sc_weapoon>();
                         if (!was_shot && time > time_start_action + w.time_shooting * duration_war_action)
                         {
-                            animator.SetTrigger("fire");
-                            float chance_hit = w.chance_hit * (1f + aim_count * aim_effect) - cur_action.target.GetComponent<sc_player>().dodge_chance;
-                            w.shot(transform.position, cur_action.target.transform.position);
-                            sc_popup_text a = Instantiate<GameObject>(popup_object).GetComponent<sc_popup_text>();
-                            a.world_position = cur_action.target.transform.position;
-                            if (Random.Range(0f, 1f) < chance_hit)
-                            {
-                                a.text = "-" + w.damage.ToString();
-                                cur_action.target.GetComponent<sc_player>().hitpoints -= w.damage;
-                            }
-                            else
-                                a.text = "miss";
-                            //a.text = chance_hit.ToString() + " | " + a.text;
-                            was_shot = true;
+                            shot(w);
                         }
                     } break;
             }
         }
+    }
+
+    void shot(sc_weapoon w)
+    {
+        animator.SetTrigger("fire");
+        sc_popup_text a = Instantiate<GameObject>(popup_object).GetComponent<sc_popup_text>();
+        if (sc_player._.current_cell.up_wall == null)
+        {
+            float chance_hit = w.chance_hit * (1f + aim_count * aim_effect) - cur_action.target.GetComponent<sc_player>().dodge_chance;
+            if (Random.Range(0f, 1f) < chance_hit)
+            {
+                a.text = "-" + w.damage.ToString();
+                cur_action.target.GetComponent<sc_player>().hitpoints -= w.damage;
+            }
+            else
+                a.text = "miss";
+            //a.text = chance_hit.ToString() + " | " + a.text;
+        }
+        else
+        {
+            cur_action.target = sc_player._.current_cell.up_wall.gameObject;
+            a.text = "-" + w.damage.ToString();
+            cur_action.target.GetComponent<sc_wall>().hitpoints -= w.damage;
+        }
+        w.shot(transform.position, cur_action.target.transform.position);
+        a.world_position = cur_action.target.transform.position;
+        was_shot = true;
     }
 
     void start_tactic_phase()

@@ -89,6 +89,8 @@ public class sc_player : MonoBehaviour {
     void calc_stats_for_war_action()
     {
         cur_action = action_list[0];
+        current_cell = current_cell_list[0];
+        current_cell_list.RemoveAt(0);
         //set animation
         switch(cur_action.type)
         {
@@ -142,6 +144,8 @@ public class sc_player : MonoBehaviour {
 
     void Update()
     {
+        float z = -1f + transform.localPosition.y * 0.25f;
+        transform.position = new Vector3(transform.position.x, transform.position.y, z);
         time += Time.deltaTime;
         if (phase == phase_type.war)
         {
@@ -200,6 +204,7 @@ public class sc_player : MonoBehaviour {
         animator.SetTrigger("stay");
         current_war_position = transform.position;
         transform.position = current_cell.transform.position;
+        current_cell_list.Clear();
         phase = phase_type.tactic;
         if (Vector3.Distance(current_war_position, transform.position) > 0.1)
         {
@@ -275,7 +280,7 @@ public class sc_player : MonoBehaviour {
 
     void start_war_phase()
     {
-        current_cell_list.Clear();
+        //current_cell_list.Clear();
         transform.position = current_war_position;
         foreach (GameObject g in marker_list)
             Destroy(g);
@@ -331,7 +336,11 @@ public class sc_player : MonoBehaviour {
 
     /*void OnGUI()
     {
-        Rect rect = new Rect(10f, 10f, 50f, 50f);
-        GUI.Label(rect, dodge_chance.ToString());
+        Rect rect = new Rect(10f, 10f, 250f, 250f);
+        //GUI.Label(rect, dodge_chance.ToString());
+        if (current_cell.up_wall != null)
+            GUI.Label(rect, current_cell.up_wall.transform.position.x.ToString());
+        else
+            GUI.Label(rect, "null");
     }*/
 }
