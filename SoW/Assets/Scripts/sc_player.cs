@@ -181,7 +181,7 @@ public class sc_player : MonoBehaviour {
                             }
                             else
                                 a.text = "miss";
-                            //a.text = chance_hit.ToString() + " | " + a.text;
+                            a.text = chance_hit.ToString() + " | " + a.text;//!!!!!!!!!!!!!!!!!!!
                             was_shot = true;
                         }
                     } break;
@@ -305,6 +305,16 @@ public class sc_player : MonoBehaviour {
     void die()
     {
         Destroy(gameObject);
+    }
+
+    void OnDestroy()
+    {
+        sc_event_controller.player_tactic_move -= tactic_move;
+        sc_event_controller.end_war_phase -= start_tactic_phase;
+        sc_event_controller.end_tactik_phase -= start_war_phase;
+        sc_event_controller.player_tactic_shot -= tactic_shot;
+        sc_event_controller.player_tactic_aim -= tactic_aim;
+        sc_event_controller.player_tactic_undo -= tactic_undo;
     }
 
     /*void OnGUI()
