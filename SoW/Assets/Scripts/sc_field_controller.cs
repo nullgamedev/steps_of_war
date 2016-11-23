@@ -18,4 +18,10 @@ public class sc_field_controller : MonoBehaviour {
     {
         gameObject.SetActive(true);
     }
+
+    void OnDestroy()
+    {
+        sc_event_controller.end_tactik_phase -= hide;
+        sc_event_controller.end_war_phase -= show;
+    }
 }

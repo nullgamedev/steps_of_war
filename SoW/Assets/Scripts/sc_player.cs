@@ -59,6 +59,7 @@ public class sc_player : MonoBehaviour {
     }
     List<GameObject> marker_list;
     List<action> action_list;
+    List<sc_field_cell> current_cell_list;
     Animator animator;
 
 
@@ -69,10 +70,13 @@ public class sc_player : MonoBehaviour {
 
     void Start()
     {
+        //print(time);
+        //print(time_start_action);//!!!!!!!!!!!!!!!
         animator = gameObject.GetComponent<Animator>();
         hp = base_hp;
         marker_list = new List<GameObject>();
         action_list = new List<action>();
+        current_cell_list = new List<sc_field_cell>();
         sc_event_controller.player_tactic_move += tactic_move;
         sc_event_controller.end_war_phase += start_tactic_phase;
         sc_event_controller.end_tactik_phase += start_war_phase;
@@ -203,11 +207,13 @@ public class sc_player : MonoBehaviour {
             tmp.type = action_type.go;
             tmp.target = current_cell.gameObject;
             action_list.Add(tmp);
+            current_cell_list.Add(current_cell);
         }
     }
 
     void tactic_move(int x, int y)
     {
+        current_cell_list.Add(current_cell);
         GameObject a = Instantiate<GameObject>(obj_marker);
         a.transform.position = transform.position;
         a.GetComponent<SpriteRenderer>().sprite = sprite_cell_go;
@@ -229,6 +235,7 @@ public class sc_player : MonoBehaviour {
 
     void tactic_shot(GameObject enemy, GameObject weapoon)
     {
+        current_cell_list.Add(current_cell);
         GameObject a = Instantiate<GameObject>(obj_marker);
         a.transform.position = transform.position;
         a.GetComponent<SpriteRenderer>().sprite = sprite_cell_fire;
@@ -243,6 +250,7 @@ public class sc_player : MonoBehaviour {
 
     void tactic_aim(GameObject enemy, GameObject weapoon)
     {
+        current_cell_list.Add(current_cell);
         GameObject a = Instantiate<GameObject>(obj_marker);
         a.transform.position = transform.position;
         a.GetComponent<SpriteRenderer>().sprite = sprite_cell_aim;
@@ -256,6 +264,8 @@ public class sc_player : MonoBehaviour {
 
     void tactic_undo()
     {
+        current_cell = current_cell_list[current_cell_list.Count - 1];
+        current_cell_list.RemoveAt(current_cell_list.Count - 1);
         action_list.RemoveAt(action_list.Count - 1);
         GameObject marker = marker_list[marker_list.Count - 1];
         transform.position = marker.transform.position;
@@ -265,11 +275,12 @@ public class sc_player : MonoBehaviour {
 
     void start_war_phase()
     {
+        current_cell_list.Clear();
         transform.position = current_war_position;
         foreach (GameObject g in marker_list)
             Destroy(g);
         marker_list.Clear();
-
+        
         if (action_list[0].type == action_type.go && action_list[1].type != action_type.go)
         {
             action tmp = new action();
@@ -296,7 +307,7 @@ public class sc_player : MonoBehaviour {
             tmp.type = action_type._somersault;
             action_list[action_list.Count - 1] = tmp;
         }
-
+        //print(action_list.Count);
         calc_stats_for_war_action();
         phase = phase_type.war;
         time_start_action = time;
@@ -309,6 +320,7 @@ public class sc_player : MonoBehaviour {
 
     void OnDestroy()
     {
+        //time_start_action = time;
         sc_event_controller.player_tactic_move -= tactic_move;
         sc_event_controller.end_war_phase -= start_tactic_phase;
         sc_event_controller.end_tactik_phase -= start_war_phase;

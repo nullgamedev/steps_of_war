@@ -294,4 +294,10 @@ public class sc_enemy : MonoBehaviour {
     {
         Destroy(gameObject);
     }
+
+    void OnDestroy()
+    {
+        sc_event_controller.end_war_phase -= start_tactic_phase;
+        sc_event_controller.end_tactik_phase -= start_war_phase;
+    }
 }

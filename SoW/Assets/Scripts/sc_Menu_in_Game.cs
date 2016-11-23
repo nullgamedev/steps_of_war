@@ -62,6 +62,7 @@ public class sc_Menu_in_Game : MonoBehaviour {
 
     public void Click_Restart_Button()
     {
+        Time.timeScale = 1f;
 		SceneManager.LoadScene("roman_battle_area", LoadSceneMode.Single);
     }
     public void Click_Exit_Button()

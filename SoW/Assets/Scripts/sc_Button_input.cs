@@ -134,7 +134,6 @@ public class sc_Button_input : MonoBehaviour
 		Move_Text.text = "Moves: " + Count_of_Moves + "/" + Max_Moves;
         if (Count_of_Moves < Max_Moves)
         {
-
             Start_Button.GetComponent<Button>().interactable = false;
             Move_Button.GetComponent<Button>().interactable = true;
             Aim_Button.GetComponent<Button>().interactable = true;
@@ -226,4 +225,9 @@ public class sc_Button_input : MonoBehaviour
 			Check_after_aimorfire();
 		}
 	}
+
+    void OnDestroy()
+    {
+        sc_event_controller.end_war_phase -= End_war_stage;
+    }
 }
